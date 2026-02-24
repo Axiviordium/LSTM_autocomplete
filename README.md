@@ -5,7 +5,7 @@
 
 Датасеты могли бы быть, но не смогли прибыть
 
-
+```
 text-autocomplete/
 ├── data/                            # Датасеты
 │   ├── raw_dataset.csv              # "сырой" скачанный датасет 
@@ -28,3 +28,4 @@ text-autocomplete/
 |
 ├── solution.ipynb                   # ноутбук с решением
 └── requirements.txt                 # зависимости проекта
+```

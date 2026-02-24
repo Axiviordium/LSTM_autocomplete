@@ -201,31 +201,6 @@ def compute_average_rouge(model, dataloader, tokenizer):
     return results
 
 
-# Хмммм..... Пусть никто не знает
-def demonstrate_inferiority(loader, model, tokenizer):
-    """я у мамы дурачок"""
-    sample_batch = next(iter(loader))
-    max_batch_len = sample_batch["input_ids"].shape[1]
-    split_point = int(max_batch_len * 0.1)  # Оставляем начало (первую десятъ)
-
-    inputs = sample_batch["input_ids"][:, :split_point] # Формируем входные данные для модели (берём первые 10%)
-    examples = []
-
-    # Проходим по каждому примеру и генерируем продолжение
-    for input_tensor in inputs:
-        truncated_input = input_tensor.unsqueeze(0).to(DEVICE)
-        generated_tokens = model.generate_tokens(truncated_input, max_batch_len - split_point)
-        
-        original_text = tokenizer.decode(input_tensor.numpy())
-        continuation = tokenizer.decode(generated_tokens)
-        
-        examples.append((original_text.strip(), continuation.strip()))
-
-    print("\nПримеры дополненных предложений:")
-    for orig, cont in examples:
-        print(f"Вход: {orig}\nДополнение: {cont}\n")
-
-
 def save_to_csv(data, file_path):
     """
     Сохраняет переданные данные в CSV файл.
