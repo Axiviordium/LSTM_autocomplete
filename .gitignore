@@ -15,4 +15,5 @@ venv/
 
 хуйня/
 models/
-data/
+
+/data/**/*.csv
