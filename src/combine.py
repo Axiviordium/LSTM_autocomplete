@@ -34,7 +34,7 @@ HIDDEN_DIM = 512
 NUM_LAYERS = 2
 MAX_LENGTH = 55  # Максимальная длина токенизированного текста
 LEARNING_RATE = 0.001
-EPOCHS = 1
+EPOCHS = 10
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SAVE_DIR = "./models"    
 
@@ -49,7 +49,7 @@ def run_lstm_experiment(csv_file):
     # *******************************************************
     # Читаем данные
     # *******************************************************
-    df = pd.read_csv(csv_file, encoding="utf-8", nrows=1000) # !!!
+    df = pd.read_csv(csv_file, encoding="utf-8") # !!!
     texts = df['whitespace_tokenized_text'].tolist()
     print("Данные прочитаны")
 
@@ -96,7 +96,7 @@ def run_lstm_experiment(csv_file):
     print('*' * 25)
     print()
     df = pd.read_csv(test_texts_csv)
-    first_rows = df.head(2)["text"] 
+    first_rows = df.head(5)["text"] 
     print('Тексты тестового набора:') 
     print(first_rows)
     for index, text in first_rows.items():

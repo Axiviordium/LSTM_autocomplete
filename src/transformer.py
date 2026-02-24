@@ -20,7 +20,7 @@ def run_transformer_run(csv_file):
     # tokenizer.pad_token = tokenizer.eos_token # Устанавливаем EOS-токен как pad-token
 
     # Читаем CSV файл
-    df = pd.read_csv(csv_file, nrows=10)  
+    df = pd.read_csv(csv_file) #!!!! 
     text_column = df['text']
 
     # Создаём набор данных и загрузчик
@@ -69,8 +69,8 @@ def gpt2_generate_sequence(csv_file):
     tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
     model = AutoModelForCausalLM.from_pretrained("distilgpt2").to(DEVICE)
 
-    # Читаем CSV файл ТОЛЬКО ДЛЯ ПЕРВЫХ ДВУХ СТРОК
-    df = pd.read_csv(csv_file, nrows=2)  # Только первые две строки!!!
+    # Читаем CSV файл ТОЛЬКО ДЛЯ ПЕРВЫХ nrows СТРОК
+    df = pd.read_csv(csv_file, nrows=5)  # Только первые две(5) строки!!!
     text_column = df['text']
 
     # Создаём набор данных и загрузчик
